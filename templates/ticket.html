@@ -139,6 +139,36 @@
             border-left: 4px solid #e74c3c;
         }
         
+        .info-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+            border: 2px solid #ffcccc;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .info-box-title {
+            color: #e74c3c;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .info-box-content {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        
+        .info-box-content strong {
+            color: #e74c3c;
+        }
+        
         .footer {
             margin-top: 30px;
             padding-top: 20px;
@@ -260,6 +290,19 @@
                 margin: 20px 0;
             }
             
+            .info-box {
+                padding: 18px;
+                margin: 20px 0;
+            }
+            
+            .info-box-title {
+                font-size: 1em;
+            }
+            
+            .info-box-content {
+                font-size: 0.9em;
+            }
+            
             .footer {
                 font-size: 0.85em;
                 margin-top: 20px;
@@ -374,6 +417,17 @@
             <div class="info-item">
                 <span class="info-label"><span class="emoji">🕐</span>Hora de llegada</span>
                 <span class="info-value">{{ time }}</span>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <div class="info-box-title">
+                <span>👋</span>
+                <span>Cómo ser atendido</span>
+            </div>
+            <div class="info-box-content">
+                Cuando llegue tu turno, <strong>presenta esta pantalla</strong> a nuestro personal.<br>
+                Puedes guardar una captura de pantalla para mayor comodidad.
             </div>
         </div>
         
