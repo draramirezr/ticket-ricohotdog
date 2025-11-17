@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Tickets - Panel de Control</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .qr-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .qr-section h2 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+        
+        .qr-image {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .qr-image img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .instructions {
+            background: #ffe5e5;
+            border-left: 4px solid #e74c3c;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            margin: 20px 0;
+        }
+        
+        .instructions h3 {
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+        }
+        
+        .instructions li {
+            margin: 10px 0;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .current-ticket {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .current-ticket h3 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .ticket-number {
+            font-size: 3em;
+            font-weight: bold;
+        }
+        
+        .button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+        
+        .button:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+        
+        .button-secondary {
+            background: #6c757d;
+        }
+        
+        .button-secondary:hover {
+            background: #5a6268;
+        }
+        
+        /* Responsive para tablets */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 25px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .subtitle {
+                font-size: 1em;
+            }
+            
+            .qr-section {
+                padding: 20px;
+            }
+            
+            .qr-section h2 {
+                font-size: 1.5em;
+            }
+            
+            .ticket-number {
+                font-size: 2.5em;
+            }
+            
+            .button {
+                padding: 12px 25px;
+                font-size: 1em;
+                width: 100%;
+                margin: 8px 0;
+            }
+        }
+        
+        /* Responsive para móviles */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px 15px;
+                border-radius: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+                margin-bottom: 8px;
+            }
+            
+            .subtitle {
+                font-size: 0.9em;
+                margin-bottom: 20px;
+            }
+            
+            .qr-section {
+                padding: 15px;
+                margin: 20px 0;
+            }
+            
+            .qr-section h2 {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+            }
+            
+            .qr-section p {
+                font-size: 0.9em;
+            }
+            
+            .qr-image {
+                padding: 15px;
+                margin: 15px 0;
+            }
+            
+            .current-ticket {
+                padding: 20px;
+                margin: 15px 0;
+            }
+            
+            .current-ticket h3 {
+                font-size: 1em;
+            }
+            
+            .ticket-number {
+                font-size: 2em;
+            }
+            
+            .instructions {
+                padding: 15px;
+                margin: 15px 0;
+            }
+            
+            .instructions h3 {
+                font-size: 1em;
+            }
+            
+            .instructions li {
+                font-size: 0.9em;
+                margin: 8px 0;
+            }
+            
+            .button {
+                padding: 12px 20px;
+                font-size: 0.95em;
+                width: 100%;
+                margin: 8px 0;
+            }
+        }
+        
+        /* Responsive para pantallas muy pequeñas */
+        @media (max-width: 360px) {
+            .container {
+                padding: 15px 10px;
+            }
+            
+            h1 {
+                font-size: 1.3em;
+            }
+            
+            .qr-section h2 {
+                font-size: 1.1em;
+            }
+            
+            .ticket-number {
+                font-size: 1.8em;
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+            
+            .button, .current-ticket, .instructions {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎫 Sistema de Tickets</h1>
+        <p class="subtitle">Panel de Control</p>
+        
+        <div class="current-ticket">
+            <h3>Último Ticket Asignado</h3>
+            <div class="ticket-number" id="currentTicket">0</div>
+        </div>
+        
+        <div style="margin: 20px 0;">
+            <button class="button" onclick="assignManualTicket()">➕ Asignar Ticket Manualmente</button>
+        </div>
+        
+        <div class="qr-section">
+            <h2>📱 Código QR para Clientes</h2>
+            <p>Imprima este código QR y colóquelo en un lugar visible</p>
+            <div class="qr-image">
+                <img src="/qr" alt="Código QR para tickets" id="qrImage">
+            </div>
+        </div>
+        
+        <button class="button button-secondary" onclick="resetTickets()">🔄 Reiniciar Contador</button>
+    </div>
+    
+    <script>
+        // Actualizar el ticket actual cada 2 segundos
+        function updateCurrentTicket() {
+            fetch('/api/current')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('currentTicket').textContent = data.current_ticket;
+                });
+        }
+        
+        // Asignar ticket manualmente
+        function assignManualTicket() {
+            fetch('/api/assign')
+                .then(response => response.json())
+                .then(data => {
+                    // Crear un modal/alerta personalizada con el número
+                    const ticketNum = data.ticket_number;
+                    const time = data.time;
+                    
+                    // Mostrar alerta personalizada
+                    alert(`🌭 TICKET ASIGNADO 🌭\n\n` +
+                          `Número: ${ticketNum}\n` +
+                          `Hora: ${time}\n\n` +
+                          `Entregue este número al cliente`);
+                    
+                    // Actualizar el contador
+                    updateCurrentTicket();
+                });
+        }
+        
+        // Reiniciar el contador
+        function resetTickets() {
+            if (confirm('¿Está seguro que desea reiniciar el contador a 0?')) {
+                fetch('/api/reset')
+                    .then(response => response.json())
+                    .then(data => {
+                        alert('Contador reiniciado exitosamente');
+                        updateCurrentTicket();
+                    });
+            }
+        }
+        
+        // Actualizar al cargar y cada 2 segundos
+        updateCurrentTicket();
+        setInterval(updateCurrentTicket, 2000);
+    </script>
+</body>
+</html>
+
+
